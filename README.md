@@ -1,1 +1,1 @@
-# trades
+# trade-api
