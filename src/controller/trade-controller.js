@@ -41,7 +41,7 @@ route.get('/:stockSymbol/trades', (req, res) => {
     tradeService.getByCondition(conditionObj).then((result) => {
         res.status(constant.HTML_STATUS_CODE.SUCCESS).json(response.success(constant.HTML_STATUS_CODE.SUCCESS, result));
     }).catch((error) => {
-        res.status(error.status || constant.HTML_STATUS_CODE.INTERNAL_ERROR).json(response.error(constant.STATUS.FAIL, error.message));
+        res.status(error.status || constant.HTML_STATUS_CODE.INTERNAL_ERROR).json(response.error(error.status || constant.HTML_STATUS_CODE.INTERNAL_ERROR, error.message));
     })
 });
 
