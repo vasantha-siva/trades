@@ -4,16 +4,23 @@
     "description": "",
     "main": "index.js",
     "dependencies": {
+        "assert": "^2.0.0",
         "body-parser": "^1.19.0",
+
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.9.12"
+        "mocha": "^7.1.2",
+        "mongoose": "^5.9.12",
+        "supertest": "^4.0.2"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^7.1.2"
+    },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node ./src/index.js"
+        "start": "node ./src/index.js",
+        "test": "mocha ./src/test.js"
     },
     "author": "",
     "license": "ISC"
