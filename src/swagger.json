@@ -1,0 +1,715 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api for the e-commerce",
+    "version": "1.0.0",
+    "title": "Trade"
+  },
+  "host": "localhost:4000",
+  "tags": [
+    {
+      "name": "Detail",
+      "description": "API for Project"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "user1"
+                },
+                "password": {
+                  "type": "string",
+                  "example": 12345
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User loggedin successfully"
+                    },
+                    "accessToken": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJhNjQ5MDNlZGRmODA3MGM4YzllYTYiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidXNlcjEiLCJpYXQiOjE1OTAwNTIxNjksImV4cCI6MTU5MDA1NTc2OX0.YM5vEdlqndOVfb6IzULPDzlzY-mgv7dpZZdNCMNLiDs"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unatherized",
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "401",
+                  "description": "The version of the API",
+                  "xml": {
+                    "attribute": true
+                  }
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Invalid Credentials.",
+                  "description": "success message",
+                  "xml": {
+                    "attribute": true
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable",
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "406",
+                  "description": "The version of the API",
+                  "xml": {
+                    "attribute": true
+                  }
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User not registered with the email id.",
+                  "description": "success message",
+                  "xml": {
+                    "attribute": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "01"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "vasu"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "vasu@g.c"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "bangalore"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 201
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "New user created. Please login to continue.."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 406
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "It seems like user is already registered with the same UserName."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trades": {
+      "post": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "01"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "buy"
+                },
+                "symbol": {
+                  "type": "string",
+                  "example": "AC"
+                },
+                "shares": {
+                  "type": "number",
+                  "example": 30
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 201
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "5ec58dee5b12f010a469c1d2"
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": 49
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "buy"
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "example": "AC"
+                    },
+                    "user": {
+                      "type": "string",
+                      "example": "5ec57413d7b23e1588cd7ceb"
+                    },
+                    "shares": {
+                      "type": "number",
+                      "example": 30
+                    },
+                    "price": {
+                      "type": "number",
+                      "example": 100
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 400
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Trade is already exists."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "4 trades deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "5ec67a425b12f010a469c1d5"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "49"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "buy"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "example": "AC"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "vasu"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "02"
+                          }
+                        }
+                      },
+                      "shares": {
+                        "type": "number",
+                        "example": 67
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 100
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trades/users/{userId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "userId",
+            "type": "string",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "5ec67a425b12f010a469c1d5"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "49"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "buy"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "example": "AC"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "vasu"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "02"
+                          }
+                        }
+                      },
+                      "shares": {
+                        "type": "number",
+                        "example": 67
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 100
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 404
+                },
+                "body": {
+                  "type": "string",
+                  "example": "User not exists."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stockSymbol}/trades": {
+      "get": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "stockSymbol",
+            "type": "string",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "start",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "end",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "5ec67a425b12f010a469c1d5"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "49"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "buy"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "example": "AC"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "vasu"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "02"
+                          }
+                        }
+                      },
+                      "shares": {
+                        "type": "number",
+                        "example": 67
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": 100
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 404
+                },
+                "body": {
+                  "type": "string",
+                  "example": "Symbol not exists."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stockSymbol}/price": {
+      "get": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "stockSymbol",
+            "type": "string",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "start",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "end",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 200
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "5ec67a425b12f010a469c1d5"
+                      },
+                      "highest": {
+                        "type": "number",
+                        "example": 100
+                      },
+                      "lowest": {
+                        "type": "number",
+                        "example": 39
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "example": 404
+                },
+                "body": {
+                  "type": "string",
+                  "example": "Symbol not exists."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

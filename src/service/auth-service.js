@@ -2,6 +2,7 @@ const constant = require('./../utils/constant');
 const userDAO = require('../dao/user-dao');
 const jwt = require('jsonwebtoken');
 const AuthService = {
+    //API to Login
     signIn: (userDetail) => {
         return new Promise((resolve, reject) => {
             if (!userDetail.name || !userDetail.password) {

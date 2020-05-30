@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const constant = require('../utils/constant');
 const Schema = mongoose.Schema;
 
-// Create Schema objects
+// Create Schema objects for User
 const userSchema = new Schema({
     name: {
         type: String,

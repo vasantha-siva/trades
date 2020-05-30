@@ -3,6 +3,7 @@ const constant = require('../utils/constant');
 
 const UserService = {
 
+    //API to signup
     create: (userDetail) => {
         return new Promise((resolve, reject) => {
             userDAO.checkExist(userDetail.name).then((data) => {

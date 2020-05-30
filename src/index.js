@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const express = require('express');
 const constant = require('./utils/constant');
 const bodyParser = require('body-parser');
@@ -6,15 +6,15 @@ const cors = require('cors');
 //Setting Server
 const app = express();
 const http = require('http');
+const db = require('./db.js');
+const router = express.Router();
 
-//Connecting mongodb
-mongoose.connect(constant.MONGO_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (error) => {
-    if (error) {
-        console.log('MongoDB connection error', error);
-    } else {
-        console.log(`MongoDB connected successfully.`);
-    }
-});
+//swagger integration
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/', router);
 
 app.use(bodyParser.json({ limit: '50mb', extended: false }));
 app.use(cors());
@@ -24,7 +24,7 @@ app.use(cors());
 app.use('/auth', require('./controller/auth-controller'));
 app.use('/users', require('./controller/user-controller'));
 app.use('/trades', require('./controller/trade-controller'));
-app.use('/stocks', require('./controller/trade-controller'));
+app.use('/stocks', require('./controller/stock-controller'));
 
 
 

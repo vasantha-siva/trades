@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const constant = require('../utils/constant');
 const Schema = mongoose.Schema;
 
-// Create Schema objects and set validations
+// Create Schema objects and set validations for trade
 const tradeSchema = new Schema({
     id: {
         type: String,

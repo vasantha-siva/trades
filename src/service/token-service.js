@@ -2,6 +2,7 @@ const constant = require('./../utils/constant');
 const jwt = require('jsonwebtoken');
 const userDAO = require('../dao/user-dao');
 
+//to authenticate User
 async function isAuthenticate(req, res, next) {
     try {
         const token = req.headers.authorization;

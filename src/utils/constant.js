@@ -23,7 +23,7 @@ const constant = {
         },
         COMMON: {
             INTERNAL_ERROR: 'Sorry! Something went wrong.',
-            MESSAGE_INVALID_DATA: 'Invalid data.',
+            MESSAGE_INVALID_DATA: 'Invalid payload.',
             MESSAGE_BAD_REQUEST: 'Bad request/Unknown requested fields.',
             MESSAGE_DATA_NOT_FOUND: 'Data not found.',
             MESSAGE_UNAUTHORIZED_ACCESS: 'You are not authorized for this action.',

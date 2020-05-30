@@ -1,6 +1,8 @@
 const tradeDAO = require('../dao/trade-dao');
 const constant = require('../utils/constant');
 const TradeService = {
+
+    //API to create trade
     create: async(tradeDetail, user) => {
         return new Promise((resolve, reject) => {
             if (!user) {
@@ -26,6 +28,8 @@ const TradeService = {
             });
         })
     },
+
+    //API to get all trades
     getAll: () => {
         return new Promise((resolve, reject) => {
             tradeDAO.getAll().then((data) => {
@@ -37,6 +41,7 @@ const TradeService = {
         })
     },
 
+    //API to get trade date with userId
     getByUserId: (userId, user) => {
         return new Promise((resolve, reject) => {
             if (!user) {
@@ -59,50 +64,7 @@ const TradeService = {
         })
     },
 
-    getByCondition: (condition) => {
-        return new Promise((resolve, reject) => {
-            tradeDAO.checkExistSymbol(condition.symbol).then((data) => {
-                if (data) {
-                    tradeDAO.getByCondition(condition).then((data) => {
-                        resolve(data);
-                    }).catch((error) => {
-                        reject({ status: constant.HTML_STATUS_CODE.INTERNAL_ERROR, message: constant.MESSAGE.COMMON.INTERNAL_ERROR });
-
-                    })
-                } else {
-                    reject({ status: constant.HTML_STATUS_CODE.NOT_FOUND, message: constant.MESSAGE.TRADE.NOT_EXIST_SYMBOL });
-
-                }
-            });
-        })
-    },
-
-    getPrice: (condition) => {
-        return new Promise((resolve, reject) => {
-            tradeDAO.checkExistSymbol(condition.symbol).then((data) => {
-                if (data) {
-                    tradeDAO.checkTradeData(condition).then((result) => {
-                        if (result && result.length == 0) {
-                            reject({ status: constant.HTML_STATUS_CODE.SUCCESS, message: constant.MESSAGE.TRADE.NO_DATA });
-
-                        } else {
-                            tradeDAO.getPrice(condition).then((data) => {
-                                resolve(data);
-                            }).catch((error) => {
-                                reject({ status: constant.HTML_STATUS_CODE.INTERNAL_ERROR, message: constant.MESSAGE.COMMON.INTERNAL_ERROR });
-
-                            })
-                        }
-
-                    });
-                } else {
-                    reject({ status: constant.HTML_STATUS_CODE.NOT_FOUND, message: constant.MESSAGE.TRADE.NOT_EXIST_SYMBOL });
-
-                }
-            });
-        })
-    },
-
+    //API to delete trade
     delete: (user) => {
         return new Promise((resolve, reject) => {
             if (!user) {

@@ -4,6 +4,7 @@ const userService = require('./../service/user-service');
 const response = require('../utils/custom-response');
 const route = express.Router();
 
+//API to signup
 route.post('/', (req, res) => {
     userService.create(req.body).then((result) => {
         res.status(constant.HTML_STATUS_CODE.CREATED).json(response.success(constant.HTML_STATUS_CODE.CREATED, result));
