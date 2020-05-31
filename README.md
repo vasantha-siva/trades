@@ -9,7 +9,7 @@ For development, you will only need Node.js and a node global package, installed
 ### Node
 - #### Node installation on Windows
 
-  Just go on (https://nodejs.org/) and download the installer.
+  Go to (https://nodejs.org/) and download the installer.
 Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git(https://git-scm.com/)).
 
 - #### Node installation on Ubuntu
@@ -38,11 +38,9 @@ If the installation was successful, you should be able to run the following comm
 
  ## MongoDB installation in windows
 
-    Just go on (https://www.mongodb.com/download-center/community) and download and install
+    Go on (https://www.mongodb.com/download-center/community) and download and install
 
-    Navigate to the C Drive on your computer using Explorer and create a new folder called data here
-     
-    Inside the data folder you just created, create another folder called db.
+    Navigate to the C Drive on your computer using Explorer and create a new folder called data/db
 
     Setup Alias Shortcuts for Mongo and Mongod
 
@@ -56,4 +54,5 @@ If the installation was successful, you should be able to run the following comm
 Mongoose requires a connection to a MongoDB database. You can require() and connect to a locally hosted database with mongoose.connect()
 
 ## Running the project
+
     $ npm start
