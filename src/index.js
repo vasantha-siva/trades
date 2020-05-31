@@ -1,4 +1,3 @@
-//const mongoose = require('mongoose');
 const express = require('express');
 const constant = require('./utils/constant');
 const bodyParser = require('body-parser');

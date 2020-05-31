@@ -4,7 +4,7 @@
 
 ## Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environment.
+For development, you will only need Node.js and a node global package, installed in your environment.
 
 ### Node
 - #### Node installation on Windows
@@ -33,6 +33,27 @@ If the installation was successful, you should be able to run the following comm
 ##If you need to update `npm`
 
     $ npm install
+
+### MongoDB
+
+ ## MongoDB installation in windows
+
+    Just go on (https://www.mongodb.com/download-center/community) and download and install
+
+    Navigate to the C Drive on your computer using Explorer and create a new folder called data here
+     
+    Inside the data folder you just created, create another folder called db.
+
+    Setup Alias Shortcuts for Mongo and Mongod
+
+    Verify That Setup was Successful
+
+ 
+ ## you can install Mongoose to connect MongoDB
+
+    $ npm install mongoose
+
+Mongoose requires a connection to a MongoDB database. You can require() and connect to a locally hosted database with mongoose.connect()
 
 ## Running the project
     $ npm start

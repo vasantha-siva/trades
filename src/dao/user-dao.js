@@ -1,4 +1,5 @@
 const userModel = require('../model/users-schema');
+const utility = require('../utils/utilities');
 const UserDAO = {
     create: (userDetail) => {
         return new userModel({
@@ -6,7 +7,7 @@ const UserDAO = {
             email: userDetail.email,
             address: userDetail.address,
             password: userDetail.password,
-            id: userDetail.id
+            id: `USR-${utility.getRandomString(3)}`
         }).save();
     },
 
